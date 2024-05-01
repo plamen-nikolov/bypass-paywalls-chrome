@@ -716,6 +716,41 @@ if (matchDomain('elmercurio.com')) {
       paywalledArticle.classList.remove(clazz);
     }
   }
+} else if (matchDomain('seekingalpha.com')) {
+
+  const payWallSelector = 'div:has(> div[role="dialog"])';
+  const contentSelector = "main article section";
+
+  // Store the original non-pay-walled content
+  const content = document.querySelector(contentSelector).innerHTML;
+
+  // Enable body scroll
+  removeBodyScrollLockSA();
+  // Hide the SA Paywall
+  hidePayWallSA(payWallSelector);
+  // Restore the original content
+  restoreContentSA(contentSelector, content);
+
+}
+
+// Function being used by SeekingAlpha paywall
+function hidePayWallSA(payWallSelector) {
+    const payWallOverlay = document.querySelector(payWallSelector);
+    if (payWallOverlay) {
+        payWallOverlay.setAttribute("style", "display:none");
+    }
+}
+
+// Function being used by SeekingAlpha paywall
+function removeBodyScrollLockSA() {
+    const body = document.body;
+    body.classList.remove("scrollLock");
+    body.removeAttribute("style"); // there is an additional "overflow:hidden" to remove
+}
+
+// Function being used by SeekingAlpha paywall
+function restoreContentSA(contentSelector, content) {
+    document.querySelector(contentSelector).innerHTML = content;
 }
 
 function matchDomain (domains) {
