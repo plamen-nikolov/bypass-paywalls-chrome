@@ -736,7 +736,7 @@ if (matchDomain('elmercurio.com')) {
     if (content) {
       restoreContentSA(contentSelector, content);
     }
-  }, 200); // Delay (in milliseconds)
+  }, 800); // Delay (in milliseconds)
 }
 
 // Function being used by SeekingAlpha paywall
