@@ -752,6 +752,7 @@ function removeBodyScrollLockSA() {
     const body = document.body;
     body.classList.remove("scrollLock");
     body.removeAttribute("style"); // there is an additional "overflow:hidden" to remove
+    body.style.overflow = "auto";
 }
 
 // Function being used by SeekingAlpha paywall
