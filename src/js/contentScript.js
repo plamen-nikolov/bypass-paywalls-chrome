@@ -722,15 +722,21 @@ if (matchDomain('elmercurio.com')) {
   const contentSelector = "main article section";
 
   // Store the original non-pay-walled content
-  const content = document.querySelector(contentSelector).innerHTML;
+  const contentElem = document.querySelector(contentSelector);
+  var content = "";
+  if (contentElem) {
+      content = contentElem.innerHTML;
+  }
 
   // Enable body scroll
   removeBodyScrollLockSA();
   // Hide the SA Paywall
   hidePayWallSA(payWallSelector);
+  
   // Restore the original content
-  restoreContentSA(contentSelector, content);
-
+  if (content) {
+    restoreContentSA(contentSelector, content);
+  }
 }
 
 // Function being used by SeekingAlpha paywall
